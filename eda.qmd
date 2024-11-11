@@ -1,0 +1,31 @@
+---
+title: "analysis"
+output: html_document
+---
+
+
+```{r}
+library(tidyverse)
+data <- read_csv('raw_data.csv')
+```
+
+```{r}
+data <- data |>
+select(OCC_HOUR, OCC_DAY, OCC_DATE, OCC_MONTH, OCC_YEAR,
+       PRIMARY_OFFENCE, LOCATION_TYPE, BIKE_COST,
+       NEIGHBOURHOOD_158, LONG_WGS84, LAT_WGS84)
+```
+
+Some quick questions of variables of interest :
+Occurance Date
+1. What days of the week is theft more likely?
+2. What seasons are theft more likely?
+3. What times of the day is bike theft more likely?
+
+Primary Offense
+1. What are the most common offenses with bike theft?
+
+Location Typ
+```{r}
+
+```
