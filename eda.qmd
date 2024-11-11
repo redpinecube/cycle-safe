@@ -1,17 +1,83 @@
 ---
 title: "analysis"
 output: html_document
+echo: false
+warning: false
+message: false
 ---
 
 ```{r}
 library(tidyverse)
+library(leaflet)
+library(sf)
+library(ggthemes)
 data <- read_csv('analysis_data.csv')
-```
-```{r}
-data
+data <- data |>
+  filter(LONG_WGS84 != 0 & LAT_WGS84 != 0)
+toronto <- st_read('toronto.geojson', quiet = TRUE)
 ```
 
 ```{r}
-
+data <- data |>
+  select(HOOD_158, LONG_WGS84, LAT_WGS84) |>
+  group_by(HOOD_158) |>
+  summarise(num_thefts = n()) |>
+  filter(!is.na(HOOD_158)) |>
+  rename(AREA_LONG_CODE = HOOD_158)
 ```
+
+```{r}
+merged_data <- toronto |>
+  left_join(data, by = "AREA_LONG_CODE")
+```
+
+
+```{r, fig.cap="Distribution of Bike Theft across Toronto's Neighbourhoods"}
+ggplot(data = merged_data) +
+  geom_sf(aes(fill = num_thefts), color = NA, size = 0.3) +
+  scale_fill_viridis_c(
+    option = "C",
+    trans = "log",
+    direction = -1,
+    breaks = c(20, 50, 200, 400, 1000, 2000),
+    guide = guide_legend(
+      keyheight = unit(4, units = "mm"),
+      keywidth = unit(12, units = "mm"),
+      label.position = "bottom",
+      title.position = "top",
+      nrow = 1,
+      label.theme = element_text(size = 8, color = "#4e4d47"),
+      title.theme = element_text(
+        size = 10,
+        color = "#4e4d47",
+        face = "plain"
+      ),
+      ticks = FALSE
+    )
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "right",
+    legend.title = element_text(face = "bold", size = 12),
+    legend.text = element_text(size = 10),
+    legend.key.size = unit(0.7, "cm"),
+    plot.title = element_text(
+      face = "bold",
+      size = 16,
+      hjust = 0.5,
+      color = "black"
+    ),
+    axis.text = element_blank(),
+    axis.ticks = element_blank(),
+    axis.title = element_blank(),
+    panel.grid = element_blank(),
+    plot.margin = margin(10, 10, 10, 10)
+  ) +
+  theme(legend.position = 'bottom') +
+  labs(fill = 'Number of Bike Thefts')
+```
+
+
+
+
 
