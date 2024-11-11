@@ -4,21 +4,3 @@ output: html_document
 ---
 
 
-```{r}
-library(tidyverse)
-data <- read_csv('raw_data.csv')
-```
-
-
-```{r}
-primary <- c('INCIDENT - BICYCLE', 'THEFT OVER - BICYCLE',
-             'THEFT OF EBIKE OVER $5000', 'THEFT OF EBIKE UNDER $5000',
-             'THEFT UNDER - BICYCLE')
-bike_primary <- data |>
-  filter(PRIMARY_OFFENCE %in% primary)
-```
-
-```{r}
-bike_primary
-```
-
