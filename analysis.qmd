@@ -1,6 +1,76 @@
 ---
-title: "analysis"
-output: html_document
+title: "My title"
+subtitle: "My subtitle if needed"
+author: 
+  - Sean Chua
+  - Tara Chakkithara
+#thanks: "Code and data are available at: [https://github.com/RohanAlexander/starter_folder](https://github.com/RohanAlexander/starter_folder)."
+date: today
+date-format: long
+#abstract: "First sentence. Second sentence. Third sentence. Fourth sentence."
+format: pdf
+number-sections: true
+#bibliography: references.bib
 ---
 
+```{r}
+#| include: false
+#| warning: false
+#| message: false
 
+```
+
+# Introduction
+
+As one of the most urbanized and dense cities in the world, Toronto boasts numerous transit options. However, it faces significant challenges related to bike theft, a prevalent issue which has seen thousands of occurrences over the last decade. The city has one of the highest, if not the highest, number of bike thefts in Canada, with the majority of these thefts occurring in residential and neighborhood areas. In this article, we tackle the uptick in the number of thefts from the COVID-19 pandemic, the fact that most bikes are not recovered and how to minimize and prevent bike thefts, as well as provide insights into the most suitable neighborhoods and buildings to reside in and when it most especially important to be vigilant toward one's bikes.
+
+<!-- so we can start with relevance: covid changes, then we can talk about why prevention is good by showing that most bikes aren’t recovered, then we talk about what neighborhoods, buildings, and time of day to be careful -->
+
+
+# Characteristics of Stolen Bikes and Impact of COVID-19 on Bike Theft
+From the data provided in [Open Data Toronto](https://data.torontopolice.on.ca/datasets/TorontoPS::bicycle-thefts-open-data/about), we can see that Mountain and Regular Bikes are stolen most often. Moreover, black bikes make up the overwhelming majority of stolen bikes, possibly due to its inconspicuousness especially at night. Aside from this, however, there are financial incentives for bike thieves. For example, thieves can opt to sell different bike parts in exchange for cash or other items. In cities where some drugs are decriminalized, such as Toronto, some thieves may even sell parts in exchange for cannabis, for example. The prevalence of bike theft might be attributed to the fact that it is a relatively small crime, as opposed to robbery or murder, such that police forces (which might be limited at times) opt to focus resources on these crimes. These being said, there is relatively low risk for bike thieves in committing this crime.
+
+In light of this, bike thefts saw a marked increase during the COVID-19 pandemic. To avoid close contact with others, people opted to travel in private cars or bike. Thus, the number of bikes increased and with it, the number of bike thefts. According to the Bike Index, "the rising demand, increase in ridership, and shortage of bikes nationwide among other factors, has likely contributed to a rise in theft." Consequently, there were also more people who were not as experienced in riding and taking care of their bikes; the rise in the number of novice readers also likely contributed to the exacerbation of bike theft during the pandemic.
+
+# Where are Bike Thefts most Prevalent?
+The data shows that bike thefts are more often in urbanized and dense areas where there is both an abundance of bikers and foot traffic. With increased foot traffic, thieves are more easily able to blend in with their surroundings compared to isolated areas; moreover, the sheer number of bikes in urban areas naturally leads to more instances of thefts in general. For example, the Yonge-Bay Corridor and Downtown Yonge East saw the most occurrences of stolen bikes. Moreover, as urban areas generally see higher poverty rates, especially over the past decades, there exists more financial incentive for the poor to resort to thefts, as mentioned in the previous section.
+
+# Prevention is Better than CUre: Time to Reporting and Recovery Chances
+According to the data, it is almost certain that a stolen bike actually remains stolen. More than 97% of reportedly stolen bikes have never been recovered since 2014. It is well-known that the longer one goes without reporting a theft, the higher chance of the item not being recovered; as such, it is vital for one to exercise great caution with taking care of bikes and prevent them from ever being stolen in the first place. Some solutions include using locks with more robust locking mechanisms to prevent easy breakage and access to parked bikes. One can also opt to secure both the frame and at least one wheel to a fixed object to reduce the chances of the entire bike getting stolen.
+
+# Conclusion
+Toronto has experienced a relatively high amount of bike thefts over the past decade. Due to the nature of this crime, it remains to be a prevalent issue that is typically concentrated in high-density areas, especially in locations with high bicycle ownership. The majority of these are committed by opportunistic thieves who exploit vulnerabilities in bikes, such as unattended bikes secured with weak locks, and generally reside in urban areas. They are also often driven by financial needs or drug dependencies in some cases. Some thieves specifically target bikes in whole or in part — either to sell parts or the entire bike in exchange for the aforementioned incentives. The detection and recovery rates for stolen bikes are typically extremely low; this could partly be attributed to victims being unable to provide sufficient information or evidence about the theft or the thief. 
+
+
+Some of our data is of penguins (@fig-bills), from @palmerpenguins.
+
+```{r}
+#| label: fig-bills
+#| fig-cap: Bills of penguins
+#| echo: false
+
+```
+
+Talk more about it.
+
+
+\newpage
+
+\appendix
+
+# Appendix
+
+```{r}
+#| eval: true
+#| echo: false
+#| message: false
+#| warning: false
+#| label: fig-ppcheckandposteriorvsprior
+#| layout-ncol: 2
+#| fig-cap: "Examining how the model fits, and is affected by, the data"
+#| fig-subcap: ["Posterior prediction check", "Comparing the posterior with the prior"]
+
+
+```
+
+# References
