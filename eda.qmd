@@ -1,31 +1,167 @@
 ---
 title: "analysis"
 output: html_document
+echo: false
+warning: false
+message: false
 ---
-
 
 ```{r}
 library(tidyverse)
-data <- read_csv('raw_data.csv')
+library(leaflet)
+library(sf)
+library(ggthemes)
+library(ggimage)
+library(waffle)
+total_data <- read_csv('analysis_data.csv')
+data <- total_data |>
+  filter(LONG_WGS84 != 0 & LAT_WGS84 != 0)
+toronto <- st_read('toronto.geojson', quiet = TRUE)
 ```
 
 ```{r}
 data <- data |>
-select(OCC_HOUR, OCC_DAY, OCC_DATE, OCC_MONTH, OCC_YEAR,
-       PRIMARY_OFFENCE, LOCATION_TYPE, BIKE_COST,
-       NEIGHBOURHOOD_158, LONG_WGS84, LAT_WGS84)
+  select(HOOD_158, LONG_WGS84, LAT_WGS84) |>
+  group_by(HOOD_158) |>
+  summarise(num_thefts = n()) |>
+  filter(!is.na(HOOD_158)) |>
+  rename(AREA_LONG_CODE = HOOD_158)
 ```
 
-Some quick questions of variables of interest :
-Occurance Date
-1. What days of the week is theft more likely?
-2. What seasons are theft more likely?
-3. What times of the day is bike theft more likely?
-
-Primary Offense
-1. What are the most common offenses with bike theft?
-
-Location Typ
 ```{r}
+merged_data <- toronto |>
+  left_join(data, by = "AREA_LONG_CODE")
+```
+
+
+```{r}
+ggplot(data = merged_data) +
+  geom_sf(aes(fill = num_thefts), color = NA, size = 0.3) +
+  scale_fill_viridis_c(
+    option = "C",
+    trans = "log",
+    direction = -1,
+    breaks = c(20, 50, 150, 400, 1000),
+    guide = guide_colorbar(
+      barheight = unit(0.2, units = "cm"),
+      barwidth = unit(5, units = "cm"),
+      label.position = "bottom",
+      title.position = "top",
+      nrow = 1,
+      label.theme = element_text(size = 8, color = "#4e4d47"),
+      title.theme = element_text(
+        size = 10,
+        color = "#4e4d47",
+        face = "plain"
+      ),
+      ticks = FALSE
+    )
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "right",
+    legend.title = element_text(face = "bold", size = 12),
+    legend.text = element_text(size = 10),
+    legend.key.size = unit(0.7, "cm"),
+    plot.title = element_text(
+      face = "bold",
+      size = 16,
+      hjust = 0.5,
+      color = "black"
+    ),
+    axis.text = element_blank(),
+    axis.ticks = element_blank(),
+    axis.title = element_blank(),
+    panel.grid = element_blank(),
+    plot.margin = margin(10, 10, 10, 10)
+  ) +
+  theme(legend.position = 'bottom') +
+  labs(fill = 'Number of Bike Thefts')
+```
+```{r}
+waffle_frame <- total_data |>
+  filter(OCC_YEAR > 2010) |>
+  count(PREMISES_TYPE)
+```
+
+```{r}
+waffle_data <- c("Apartment" = 8849, "Commercial" = 4278, "Education" = 1578, "House" = 5333, "Other" = 4473, "Transit" = 774, "Outside" = 10834)
+```
+
+
+```{r}
+total <- sum(waffle_data)
+scaled_data <- round(waffle_data / total * 100)
+
+plot <- waffle(scaled_data, rows = 10, 
+               legend_pos = "right",
+               colors = c("Apartment" = "#4B9CD3",  
+                          "Commercial" = "#3F6F53", 
+                          "Education" = "#D1A23A",  
+                          "House" = "#9F7B87",       
+                          "Other" = "#D64A4A",       
+                          "Transit" = "#F06D4D",     
+                          "Outside" = "#7E9A92"))    
+
+plot + 
+  theme_minimal() +  
+  theme(
+    legend.title = element_blank(),
+    legend.text = element_text(size = 10),
+    legend.position = "right",  
+    axis.text = element_blank(),  
+    axis.ticks = element_blank(), 
+    plot.caption = element_text(size = 10, color = "gray50", hjust = 0.5) 
+  ) + 
+  labs(caption = "1 Tile Represents 391 Thefts")
+```
+
+```{r}
+total_data
+```
+
+
+```{r}
+total_data |>
+  ggplot(aes(x = OCC_HOUR)) +
+  geom_density(
+    fill = "#4C9F70",       
+    color = "#2A5D3D",      
+    size = 1,               
+    adjust = 1.5,          
+    alpha = 0.6             
+  ) +
+  labs(
+    subtitle = "Distribution of bike thefts across different hours",  
+    x = "Hour of Day", 
+    y = "Density",  
+  ) +
+  theme_minimal(base_size = 14) + 
+  theme(
+    plot.subtitle = element_text(size = 14, hjust = 0.5, color = "gray"),
+    axis.title = element_text(size = 16),  
+    axis.text = element_text(size = 12, color = "black"),  
+    axis.ticks = element_line(color = "gray"), 
+    panel.grid.major = element_line(color = "lightgray", linetype = "dotted"),  
+    panel.grid.minor = element_blank(), 
+    plot.caption = element_text(size = 12, color = "gray", hjust = 1)
+  )
 
 ```
+
+```{r}
+total_data |>
+  filter(OCC_YEAR > 2010) |>
+  count(OCC_YEAR) |>
+  ggplot(aes(x = OCC_YEAR, y = n)) +
+    geom_point() +
+    geom_line() +
+    scale_x_continuous(
+      breaks = seq(min(total_data$OCC_YEAR[total_data$OCC_YEAR > 2010]), 
+                   max(total_data$OCC_YEAR), 
+                   by = 1)) +
+  theme_minimal(base_size = 14)
+```
+
+
+
