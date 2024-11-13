@@ -1,2 +1,2 @@
-## The Effect of the COVID-19 Pandemic on Bicycle Theft in Toronto
+## How Increased Bike Share Infrastucture Influenced a Historic Decline in Toronto Bicycle Thefts in 2024
  
