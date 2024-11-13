@@ -28,7 +28,7 @@ toronto <- st_read('toronto.geojson', quiet = TRUE)
 
 # Introduction
 
-In the past decade, cycling has become a prominent mode of transportation in Toronto. By 2019, around 75 percent of households in the city owned a bicycle, and more than 40% of people reported using their bike for non-recreational purposes such as commuting to school or the office [@cityoftoronto2019cycling]. Despite being the safest city in Canada due to its low crime density [@mazloum2024ottawa], bike theft is a significant issue. Between 2010 and 2024, Torontonians faced a total financial loss of \$33,704,466 CAD from bike theft.
+In the past decade, cycling has become a prominent mode of transportation in Toronto. By 2019, around 75 percent of households in the city owned a bicycle, and more than 40% of people reported using their bike for non-recreational purposes such as commuting to school or the office [@cityoftoronto2019cycling]. Despite being the safest city in Canada due to its low crime density [@mazloum2024ottawa], bike theft is a significant issue. Between 2010 and 2024, residents of Toronto faced a total financial loss of \$33,704,466 CAD from bike theft.
 
 Although 2024 has seen the lowest number of bike thefts since 2013, as shown in @fig-trends, the recovery rate for stolen bikes remains low at 0.7 percent, making bike theft prevention a priority for cyclists. This analysis aims to serve as a preventative guide for Toronto residents and explores the following questions: Why did bike theft drastically increase in 2014? Why did bike thefts experience a historical decline in 2024? What initiatives can Toronto Public Services take to reduce bike theft even more in the future?
 
@@ -68,7 +68,7 @@ total_data |>
 
 # Characteristics of Stolen Bikes
 
-Based on data from [Toronto's Public Safety Data Portal](https://data.torontopolice.on.ca/datasets/TorontoPS::bicycle-thefts-open-data/about), we determined that Mountain and Regular Bikes are stolen most often. Stolen bikes tend to have an average speed of 21 km/h and a typical market value of around $1,000. Black bikes make up a significant majority of thefts, likely due to their inconspicuous nature, especially at night, as well as their widespread availability in the market. The majority of all bike thefts are tied to other primary offenses, where the bike is either used as a getaway vehicle or stolen opportunistically. Around 44% of thefts are standalone incidents where bike theft is the primary crime as seen in @fig-primary.
+Based on data from [Toronto's Public Safety Data Portal](https://data.torontopolice.on.ca/datasets/TorontoPS::bicycle-thefts-open-data/about), we determined that Mountain and Regular Bikes are stolen most often. Stolen bikes tend to have an average speed of 21 km/h and a typical market value of around \$1,000. Black bikes make up a significant majority of thefts, likely due to their inconspicuous nature, especially at night, as well as their widespread availability in the market. The majority of all bike thefts are tied to other primary offenses, where the bike is either used as a getaway vehicle or stolen opportunistically. Around 44% of thefts are standalone incidents where bike theft is the primary crime as seen in @fig-primary.
 
 ```{r}
 #| label: fig-primary
@@ -94,10 +94,9 @@ total_data |>
   )
 ```
 
-# Bike Theft Distribution Across Neighbourhoods
+# Bike Theft Distribution Across Neighborhoods
 
 As shown in @fig-neighbourhood, the Yonge-Bay Corridor has the highest number of bike thefts in Toronto, with 2,141 recorded thefts since 2010. In contrast, the Maple Leaf area has experienced the fewest thefts, with only 8 incidents over the same period. The Yonge-Bay Corridor is characterized by a population in which 51% are adults aged 25 to 54. The largest income group in the area earns less than 10,000 CAD, accounting for 30% of the population aged 15 and over. Additionally, 98% of residents live in apartments [@yongebay2016]. In comparison, Maple Leaf has a population approximately half the size of Yonge-Bay. 46% of its residents live in single-detached homes, and 40% of the working population earns between 20,000 and 50,000 CAD [@mapleleaf2016]. According to @fig-apt, apartments are more vulnerable to bike theft than detached homes.
-
 
 ```{r}
 data <- data |>
@@ -162,6 +161,10 @@ ggplot(data = merged_data) +
   labs(fill = 'Number of Bike Thefts')
 ```
 
+# Locations of Bike Theft
+
+Bike thefts occur more often near apartments, as apartments often have communal bike storage areas which might not be relatively secure compared to individual garages (which are often more secured) in detached homes. In fact, in a 2018 article, it was written that "for the first time since Toronto police began collecting data, the number of bikes stolen from apartments, condos and their private storage rooms has surpassed those stolen on the street [@aptthefts]." Such areas are also easily accessed by multiple residents and increase the chances of theft occurring. Aside from this, thieves may be able to exploit weakly secured access points in apartment buildings which may, in turn, allow them to gain access to the aforementioned shared spaces.
+
 ```{r}
 waffle_frame <- total_data |>
   filter(OCC_YEAR > 2010) |>
@@ -202,12 +205,12 @@ plot +
   ) + 
   labs(caption = "1 Tile Represents 391 Thefts")
 ```
-Bike thefts occur more often near apartments, as apartments often have communal bike storage areas which might not be relatively secure compared to individual garages (which are often more secured) in detached homes. In fact, in a 2018 article, it was written that "for the first time since Toronto police began collecting data, the number of bikes stolen from apartments, condos and their private storage rooms has surpassed those stolen on the street [@aptthefts]." Such areas are also easily accessed by multiple residents and increase the chances of theft occurring. Aside from this, thieves may be able to exploit weakly secured access points in apartment buildings which may, in turn, allow them to gain access to the aforementioned shared spaces. 
 
 \newpage
 
 # When are Bike Thefts most Prevalent?
-The data shows that bike thefts are more often in urbanized and dense areas where there is both an abundance of bikers and foot traffic. With increased foot traffic, thieves are more easily able to blend in with their surroundings compared to isolated areas; moreover, the sheer number of bikes in urban areas naturally leads to more instances of thefts in general. 
+
+The data shows that bike thefts are more often in urbanized and dense areas where there is both an abundance of bikers and foot traffic. With increased foot traffic, thieves are more easily able to blend in with their surroundings compared to isolated areas; moreover, the sheer number of bikes in urban areas naturally leads to more instances of thefts in general.
 
 ```{r}
 total_data |>
@@ -236,9 +239,11 @@ total_data |>
   )
 
 ```
+
 This being said, from the above figure, we can see that the number of thefts reaches its peak at around 7:00pm. This may be attributed to nighttime hours where there relatively less visibility as well as a more crowded environments, as more people tend to go out during this time. Another factor contributing to this would be the fact that many commuters tend to return from work during this time, leading to a higher volume of parked bikes on streets and other public areas.
 
 # Prevention is Better than Cure: Report Time and Recovery Chances
+
 According to the data, it is almost certain that a stolen bike actually remains stolen. More than 97% of reportedly stolen bikes have never been recovered since 2011. It is well-known that the longer one goes without reporting a theft, the higher chance of the item not being recovered; as such, it is vital for one to exercise great caution with taking care of bikes and prevent them from ever being stolen in the first place. Some solutions include using locks with more robust locking mechanisms to prevent easy breakage and access to parked bikes. One can also opt to secure both the frame and at least one wheel to a fixed object to reduce the chances of the entire bike getting stolen.
 
 # Limitations
@@ -252,6 +257,7 @@ Additionally, the declining number of police officers entering the force could i
 While our analysis provides valuable insights into bike theft patterns, it does not account for the broader context of rising vehicle thefts or the limitations posed by police staffing and reporting. A more comprehensive analysis would include additional data on other types of crime, law enforcement trends, and demographic changes to paint a more accurate picture of crime dynamics in Toronto.
 
 # Conclusion
-Toronto has experienced a relatively high amount of bike thefts over the past decade. Due to the nature of this crime, it remains to be a prevalent issue that is typically concentrated in high-density areas, especially in locations with high bicycle ownership. The majority of these are committed by opportunistic thieves who exploit vulnerabilities in bikes, such as unattended bikes secured with weak locks, and generally reside in urban areas. They are also often driven by financial needs or drug dependencies in some cases. Some thieves specifically target bikes in whole or in part — either to sell parts or the entire bike in exchange for the aforementioned incentives. The detection and recovery rates for stolen bikes are typically extremely low; this could partly be attributed to victims being unable to provide sufficient information or evidence about the theft or the thief. 
+
+Toronto has experienced a relatively high amount of bike thefts over the past decade. Due to the nature of this crime, it remains to be a prevalent issue that is typically concentrated in high-density areas, especially in locations with high bicycle ownership. The majority of these are committed by opportunistic thieves who exploit vulnerabilities in bikes, such as unattended bikes secured with weak locks, and generally reside in urban areas. They are also often driven by financial needs or drug dependencies in some cases. Some thieves specifically target bikes in whole or in part — either to sell parts or the entire bike in exchange for the aforementioned incentives. The detection and recovery rates for stolen bikes are typically extremely low; this could partly be attributed to victims being unable to provide sufficient information or evidence about the theft or the thief.
 
 # References
