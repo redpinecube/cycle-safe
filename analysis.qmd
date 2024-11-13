@@ -5,7 +5,7 @@ author:
   - Sean Chua
 date: today
 date-format: long
-format: html
+format: pdf
 number-sections: true
 bibliography: references.bib
 warning: false
@@ -271,6 +271,6 @@ While our analysis provides valuable insights into bike theft patterns, it does 
 
 # Conclusion
 
-Toronto currently faces significant challenges related to income and housing, which often act as a motivators for crime. However, the city's efforts to provide affordable bike sharing has had a positive impact. Through these initiatives, Toronto is taking a proactive approach to improve the quality of life and as a side effect its reducing crime with the increased infrastructure. 
+Toronto currently faces significant challenges related to income and housing, which often act as a motivators for crime such as bike thefts. However, the city's efforts to provide affordable bike sharing has had a positive impact. Through these initiatives, Toronto is proactively improving the quality of life, and at the same time, it is reducing crime as a result of increased infrastructure.
 
 # References
