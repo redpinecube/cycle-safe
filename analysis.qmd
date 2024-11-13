@@ -28,7 +28,7 @@ toronto <- st_read('toronto.geojson', quiet = TRUE)
 
 # Introduction
 
-In the past decade, cycling has become a prominent mode of transportation in Toronto. By 2019, around 75 percent of households in the city owned a bicycle, and more than 40% of people reported using their bike for non-recreational purposes such as commuting to school or the office, @cityoftoronto2019cycling. Despite being the safest city in Canada due to its low crime density, @mazloum2024ottawa, bike theft is a significant issue. Between 210 and 2024 residents of Toronto faced a total financial loss of \$33,704,466 CAD from bike theft.
+In the past decade, cycling has become a prominent mode of transportation in Toronto. By 2019, around 75 percent of households in the city owned a bicycle, and more than 40% of people reported using their bike for non-recreational purposes such as commuting to school or the office [@cityoftoronto2019cycling]. Despite being the safest city in Canada due to its low crime density [@mazloum2024ottawa], bike theft is a significant issue. Between 2010 and 2024, Torontonians faced a total financial loss of \$33,704,466 CAD from bike theft.
 
 Although 2024 has seen the lowest number of bike thefts since 2013, as shown in @fig-trends, the recovery rate for stolen bikes remains low at 0.7 percent, making bike theft prevention a priority for cyclists. This analysis aims to serve as a preventative guide for Toronto residents and explores the following questions: Why did bike theft drastically increase in 2014? Why did bike thefts experience a historical decline in 2024? What initiatives can Toronto Public Services take to reduce bike theft even more in the future?
 
@@ -96,7 +96,7 @@ total_data |>
 
 # Bike Theft Distribution Across Neighbourhoods
 
-As shown in @fig-neighbourhood, the Yonge-Bay Corridor has the highest number of bike thefts in Toronto, with 2,141 recorded thefts since 2010. In contrast, the Maple Leaf area has experienced the fewest thefts, with only 8 incidents over the same period. The Yonge-Bay Corridor is characterized by a population in which 51% are adults aged 25 to 54. The largest income group in the area earns less than 10,000 CAD, accounting for 30% of the population aged 15 and over. Additionally, 98% of residents live in apartments, @yongebay2016. In comparison, Maple Leaf has a population approximately half the size of Yonge-Bay. 46% of its residents live in single-detached homes, and 40% of the working population earns between 20,000 and 50,000 CAD, @mapleleaf2016. According to @fig-apt, apartments are more vulnerable to bike theft than detached homes.
+As shown in @fig-neighbourhood, the Yonge-Bay Corridor has the highest number of bike thefts in Toronto, with 2,141 recorded thefts since 2010. In contrast, the Maple Leaf area has experienced the fewest thefts, with only 8 incidents over the same period. The Yonge-Bay Corridor is characterized by a population in which 51% are adults aged 25 to 54. The largest income group in the area earns less than 10,000 CAD, accounting for 30% of the population aged 15 and over. Additionally, 98% of residents live in apartments [@yongebay2016]. In comparison, Maple Leaf has a population approximately half the size of Yonge-Bay. 46% of its residents live in single-detached homes, and 40% of the working population earns between 20,000 and 50,000 CAD [@mapleleaf2016]. According to @fig-apt, apartments are more vulnerable to bike theft than detached homes.
 
 
 ```{r}
@@ -202,8 +202,7 @@ plot +
   ) + 
   labs(caption = "1 Tile Represents 391 Thefts")
 ```
-
-Public spaces often lack adequate surveillance measures and security presence and thus are easily accessible. Apartment complexes may not have secure bike storage facilities or have proper locking mechanisms, enticing thieves.
+Bike thefts occur more often near apartments, as apartments often have communal bike storage areas which might not be relatively secure compared to individual garages (which are often more secured) in detached homes. In fact, in a 2018 article, it was written that "for the first time since Toronto police began collecting data, the number of bikes stolen from apartments, condos and their private storage rooms has surpassed those stolen on the street [@aptthefts]." Such areas are also easily accessed by multiple residents and increase the chances of theft occurring. Aside from this, thieves may be able to exploit weakly secured access points in apartment buildings which may, in turn, allow them to gain access to the aforementioned shared spaces. 
 
 \newpage
 
@@ -211,10 +210,6 @@ Public spaces often lack adequate surveillance measures and security presence an
 The data shows that bike thefts are more often in urbanized and dense areas where there is both an abundance of bikers and foot traffic. With increased foot traffic, thieves are more easily able to blend in with their surroundings compared to isolated areas; moreover, the sheer number of bikes in urban areas naturally leads to more instances of thefts in general. 
 
 ```{r}
-#| label: fig-hour
-#| fig-cap: "Density of Bike Thefts by Hour of Day"
-#| fig-align: left
-
 total_data |>
   ggplot(aes(x = OCC_HOUR)) +
   geom_density(
@@ -225,15 +220,15 @@ total_data |>
     alpha = 0.6             
   ) +
   labs(
+    subtitle = "Distribution of Bike Thefts across Different Hours",  
     x = "Hour of Day", 
     y = "Density",  
   ) +
   theme_minimal(base_size = 14) + 
   theme(
-    axis.title = element_text(size = 16, family = "Georgia"),  
-    axis.text = element_text(size = 10, color = "#555555", family = "Georgia"),
-    axis.title.x = element_text(size = 10, margin = margin(t = 25)),
-    axis.title.y = element_text(size = 10, margin = margin(r = 25)),
+    plot.subtitle = element_text(size = 14, hjust = 0.5, color = "gray"),
+    axis.title = element_text(size = 16),  
+    axis.text = element_text(size = 12, color = "black"),  
     axis.ticks = element_line(color = "gray"), 
     panel.grid.major = element_line(color = "lightgray", linetype = "dotted"),  
     panel.grid.minor = element_blank(), 
@@ -241,7 +236,6 @@ total_data |>
   )
 
 ```
-
 This being said, from the above figure, we can see that the number of thefts reaches its peak at around 7:00pm. This may be attributed to nighttime hours where there relatively less visibility as well as a more crowded environments, as more people tend to go out during this time. Another factor contributing to this would be the fact that many commuters tend to return from work during this time, leading to a higher volume of parked bikes on streets and other public areas.
 
 # Prevention is Better than Cure: Report Time and Recovery Chances
@@ -249,37 +243,5 @@ According to the data, it is almost certain that a stolen bike actually remains 
 
 # Conclusion
 Toronto has experienced a relatively high amount of bike thefts over the past decade. Due to the nature of this crime, it remains to be a prevalent issue that is typically concentrated in high-density areas, especially in locations with high bicycle ownership. The majority of these are committed by opportunistic thieves who exploit vulnerabilities in bikes, such as unattended bikes secured with weak locks, and generally reside in urban areas. They are also often driven by financial needs or drug dependencies in some cases. Some thieves specifically target bikes in whole or in part — either to sell parts or the entire bike in exchange for the aforementioned incentives. The detection and recovery rates for stolen bikes are typically extremely low; this could partly be attributed to victims being unable to provide sufficient information or evidence about the theft or the thief. 
-
-
-Some of our data is of penguins (@fig-bills), from @palmerpenguins.
-
-```{r}
-#| label: fig-bills
-#| fig-cap: Bills of penguins
-#| echo: false
-
-```
-
-Talk more about it.
-
-
-\newpage
-
-\appendix
-
-# Appendix
-
-```{r}
-#| eval: true
-#| echo: false
-#| message: false
-#| warning: false
-#| label: fig-ppcheckandposteriorvsprior
-#| layout-ncol: 2
-#| fig-cap: "Examining how the model fits, and is affected by, the data"
-#| fig-subcap: ["Posterior prediction check", "Comparing the posterior with the prior"]
-
-
-```
 
 # References
