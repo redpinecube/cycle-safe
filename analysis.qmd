@@ -203,33 +203,6 @@ plot +
   labs(caption = "1 Tile Represents 391 Thefts")
 ```
 
-```{r}
-waffle_data <- c("Apartment" = 8849, "Commercial" = 4278, "Education" = 1578, "House" = 5333, "Other" = 4473, "Transit" = 774, "Outside" = 10834)
-total <- sum(waffle_data)
-scaled_data <- round(waffle_data / total * 100)
-
-plot <- waffle(scaled_data, rows = 10, 
-               legend_pos = "right",
-               colors = c("Apartment" = "#4B9CD3",  
-                          "Commercial" = "#3F6F53", 
-                          "Education" = "#D1A23A",  
-                          "House" = "#9F7B87",       
-                          "Other" = "#D64A4A",       
-                          "Transit" = "#F06D4D",     
-                          "Outside" = "#7E9A92"))    
-
-plot + 
-  theme_minimal() +  
-  theme(
-    legend.title = element_blank(),
-    legend.text = element_text(size = 10),
-    legend.position = "right",  
-    axis.text = element_blank(),  
-    axis.ticks = element_blank(), 
-    plot.caption = element_text(size = 10, color = "gray50", hjust = 0.5) 
-  ) + 
-  labs(title = "Distribution of Bike Thefts by Property Type", caption = "1 Tile Represents 391 Thefts")
-```
 Public spaces often lack adequate surveillance measures and security presence and thus are easily accessible. Apartment complexes may not have secure bike storage facilities or have proper locking mechanisms, enticing thieves.
 
 \newpage
@@ -238,6 +211,10 @@ Public spaces often lack adequate surveillance measures and security presence an
 The data shows that bike thefts are more often in urbanized and dense areas where there is both an abundance of bikers and foot traffic. With increased foot traffic, thieves are more easily able to blend in with their surroundings compared to isolated areas; moreover, the sheer number of bikes in urban areas naturally leads to more instances of thefts in general. 
 
 ```{r}
+#| label: fig-hour
+#| fig-cap: "Density of Bike Thefts by Hour of Day"
+#| fig-align: left
+
 total_data |>
   ggplot(aes(x = OCC_HOUR)) +
   geom_density(
@@ -248,15 +225,15 @@ total_data |>
     alpha = 0.6             
   ) +
   labs(
-    subtitle = "Distribution of Bike Thefts across Different Hours",  
     x = "Hour of Day", 
     y = "Density",  
   ) +
   theme_minimal(base_size = 14) + 
   theme(
-    plot.subtitle = element_text(size = 14, hjust = 0.5, color = "gray"),
-    axis.title = element_text(size = 16),  
-    axis.text = element_text(size = 12, color = "black"),  
+    axis.title = element_text(size = 16, family = "Georgia"),  
+    axis.text = element_text(size = 10, color = "#555555", family = "Georgia"),
+    axis.title.x = element_text(size = 10, margin = margin(t = 25)),
+    axis.title.y = element_text(size = 10, margin = margin(r = 25)),
     axis.ticks = element_line(color = "gray"), 
     panel.grid.major = element_line(color = "lightgray", linetype = "dotted"),  
     panel.grid.minor = element_blank(), 
@@ -264,6 +241,7 @@ total_data |>
   )
 
 ```
+
 This being said, from the above figure, we can see that the number of thefts reaches its peak at around 7:00pm. This may be attributed to nighttime hours where there relatively less visibility as well as a more crowded environments, as more people tend to go out during this time. Another factor contributing to this would be the fact that many commuters tend to return from work during this time, leading to a higher volume of parked bikes on streets and other public areas.
 
 # Prevention is Better than Cure: Report Time and Recovery Chances
