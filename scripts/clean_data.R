@@ -15,7 +15,7 @@
 # latitude
 
 library(tidyverse)
-data <- read_csv('raw_data.csv')
+data <- read_csv('./data/raw_data/raw_data.csv')
 
 data$OCC_DATE <- as.Date(as.POSIXct(data$OCC_DATE, format="%m/%d/%Y %I:%M:%S %p"))
 data$REPORT_DATE <- as.Date(as.POSIXct(data$REPORT_DATE, format="%m/%d/%Y %I:%M:%S %p"))
@@ -28,5 +28,5 @@ data <- data |>
          BIKE_COLOUR, BIKE_COST, STATUS, NEIGHBOURHOOD_158,
          HOOD_158, LONG_WGS84, LAT_WGS84, PRIMARY_OFFENCE)
 
-write_csv(data, 'analysis_data.csv')
+write_csv(data, './data/analysis_data/analysis_data.csv')
 
