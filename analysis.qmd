@@ -241,6 +241,16 @@ This being said, from the above figure, we can see that the number of thefts rea
 # Prevention is Better than Cure: Report Time and Recovery Chances
 According to the data, it is almost certain that a stolen bike actually remains stolen. More than 97% of reportedly stolen bikes have never been recovered since 2011. It is well-known that the longer one goes without reporting a theft, the higher chance of the item not being recovered; as such, it is vital for one to exercise great caution with taking care of bikes and prevent them from ever being stolen in the first place. Some solutions include using locks with more robust locking mechanisms to prevent easy breakage and access to parked bikes. One can also opt to secure both the frame and at least one wheel to a fixed object to reduce the chances of the entire bike getting stolen.
 
+# Limitations
+
+Limitations of our analysis arise from the scope and nature of the dataset used. Our analysis is based solely on data related to bike thefts, without incorporating external factors that could offer a more comprehensive understanding of broader crime trends.
+
+For instance, after conducting additional research, we found that bike thefts have been one of the only crimes to show a decline in recent years. In contrast, car theft has increased significantly, with insurance companies covering over 1 billion CAD in claims for car thefts in 2024 alone, as reported by @yousif2024. This broader trend of rising vehicle thefts is not reflected in our dataset, which may result in an unrealistic view of crime trends.
+
+Additionally, the declining number of police officers entering the force could impact both the accuracy and consistency of crime reporting. Since 1999, only 37 officers have joined the Toronto Police Service, @fanfair2024, even as Toronto’s population grew by over 100,000 people in 2023 @clayton2024. This disparity between population growth and police staffing may contribute to challenges in crime reporting and response, potentially affecting the reliability of the data.
+
+While our analysis provides valuable insights into bike theft patterns, it does not account for the broader context of rising vehicle thefts or the limitations posed by police staffing and reporting. A more comprehensive analysis would include additional data on other types of crime, law enforcement trends, and demographic changes to paint a more accurate picture of crime dynamics in Toronto.
+
 # Conclusion
 Toronto has experienced a relatively high amount of bike thefts over the past decade. Due to the nature of this crime, it remains to be a prevalent issue that is typically concentrated in high-density areas, especially in locations with high bicycle ownership. The majority of these are committed by opportunistic thieves who exploit vulnerabilities in bikes, such as unattended bikes secured with weak locks, and generally reside in urban areas. They are also often driven by financial needs or drug dependencies in some cases. Some thieves specifically target bikes in whole or in part — either to sell parts or the entire bike in exchange for the aforementioned incentives. The detection and recovery rates for stolen bikes are typically extremely low; this could partly be attributed to victims being unable to provide sufficient information or evidence about the theft or the thief. 
 
