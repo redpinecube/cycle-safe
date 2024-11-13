@@ -26,7 +26,7 @@ data <- data |>
          REPORT_DATE, REPORT_HOUR, DIVISION,
          PREMISES_TYPE, BIKE_TYPE, BIKE_SPEED,
          BIKE_COLOUR, BIKE_COST, STATUS, NEIGHBOURHOOD_158,
-         HOOD_158, LONG_WGS84, LAT_WGS84)
+         HOOD_158, LONG_WGS84, LAT_WGS84, PRIMARY_OFFENCE)
 
 write_csv(data, 'analysis_data.csv')
 
