@@ -214,6 +214,10 @@ plot +
 The data shows that bike thefts are more often in urbanized and dense areas where there is both an abundance of bikers and foot traffic. With increased foot traffic, thieves are more easily able to blend in with their surroundings compared to isolated areas; moreover, the sheer number of bikes in urban areas naturally leads to more instances of thefts in general.
 
 ```{r}
+#| label: fig-hour
+#| fig-cap: "Density of Bike Thefts By Hour of Day"
+#| fig-align: left
+
 total_data |>
   ggplot(aes(x = OCC_HOUR)) +
   geom_density(
@@ -224,15 +228,15 @@ total_data |>
     alpha = 0.6             
   ) +
   labs(
-    subtitle = "Distribution of Bike Thefts across Different Hours",  
     x = "Hour of Day", 
     y = "Density",  
   ) +
   theme_minimal(base_size = 14) + 
   theme(
-    plot.subtitle = element_text(size = 14, hjust = 0.5, color = "gray"),
-    axis.title = element_text(size = 16),  
-    axis.text = element_text(size = 12, color = "black"),  
+    axis.title = element_text(size = 12, color = "#333333", family = "Georgia"),  
+    axis.text = element_text(size = 10, color = "#555555", family = "Georgia"),
+    axis.title.x = element_text(size = 10, margin = margin(t = 25)),
+    axis.title.y = element_text(size = 10, margin = margin(r = 25)),
     axis.ticks = element_line(color = "gray"), 
     panel.grid.major = element_line(color = "lightgray", linetype = "dotted"),  
     panel.grid.minor = element_blank(), 
