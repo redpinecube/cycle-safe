@@ -4,8 +4,11 @@ In the past decade, cycling has become a prominent mode of transportation in Tor
 
 ## File Structure
 `data` Contains the clean and raw data used.
+
 `paper` All files needed to render the paper.
+
 `scripts` Contains scripts for data cleaning.
+
 `literature` Stores literature used for analysis.
 
 ## Reproducibility
