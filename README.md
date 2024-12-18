@@ -12,6 +12,6 @@ In the past decade, cycling has become a prominent mode of transportation in Tor
 `literature` - Stores literature used for analysis.
 
 ## Reproducibility
-Data for this project was sourced from the Toronto Police Serivce Data Portal.
-This repository is an R project and for easier reproduction, R-Studio is recommended for use as the IDE.
+Data for this project was sourced from the Toronto Police Serivce Data Portal [https://data.torontopolice.on.ca].
+This repository is an R project. For easier reproduction, R-Studio is the recommended IDE.
 
