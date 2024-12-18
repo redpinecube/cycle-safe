@@ -1,4 +1,4 @@
-## How Increased Bike Share Infrastucture Influenced a Historic Decline of Bicycle Thefts in Toronto
+## How Increased Bike Share Infrastructure Influenced a Historic Decline of Bicycle Thefts in Toronto
 
 <img src="https://github.com/user-attachments/assets/868f26ba-df00-428c-b01e-a048f0ce21a2" width="120"/>
 
